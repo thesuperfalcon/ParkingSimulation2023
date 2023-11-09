@@ -8,6 +8,7 @@ namespace ParkingSimulation2023
 {
     internal class Parking
     {
+        private static int startIndex = 1;
         private int SlotsAmount { get; set; }
         private Dictionary<string, List<Vehicle>> Slots { get; set; }
 
@@ -48,6 +49,15 @@ namespace ParkingSimulation2023
             if (!HasAvailableSpaceForVehicle(vehicle))
             {
                 Console.WriteLine($"No space available for the {vehicle.GetType().Name} with registration number {vehicle.RegistrationNumber}");
+                if (startIndex == 0)
+                {
+                    CheckingOut();
+                    startIndex = 1;
+                }
+                else
+                {
+                    startIndex--;
+                }
                 Console.ReadKey();
                 return;
             }
@@ -118,8 +128,8 @@ namespace ParkingSimulation2023
 
                             totalParkingCost += parkingCost;
 
-                            Console.WriteLine($"The {vehicle.GetType()} {registrationNumber} has checked out.");
-                            Console.WriteLine($"Parking duration: {parkingDuration.TotalMinutes} minutes");
+                            Console.WriteLine($"The {vehicle.GetType().Name} {registrationNumber} has checked out.");
+                            Console.WriteLine($"Parking duration: {Math.Round(parkingDuration.TotalMinutes, 1)} minutes");
                             Console.WriteLine($"Parking cost: {parkingCost} :-");
                             Console.ReadKey();
 
