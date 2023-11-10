@@ -21,13 +21,13 @@ namespace ParkingSimulation2023
             switch (typeOfVehicle)
             {
                 case "Car":
-                    bool isElectric = GetCarType();
+                    bool isElectric = GetVehicleType();
                     return new Car(registrationNumber, colour, isElectric);
                 case "Motorcycle":
-                    string brand = GetMotorcycleBrand();
+                    string brand = GetVehicleBrand();
                     return new Motorcycle(registrationNumber, colour, brand);
                 case "Bus":
-                    int passengerCapacity = GetBusPassengerCapacity();
+                    int passengerCapacity = GetVehiclePassengerCapacity();
                     return new Bus(registrationNumber, colour, passengerCapacity);
                 default:
                     return null;
@@ -51,14 +51,19 @@ namespace ParkingSimulation2023
             return registrationNumber;
         }
 
-        private bool GetCarType()
+        private bool GetVehicleType()
         {
             return GetYesOrNo("Is it an electric car?: ");
         }
 
-        private int GetBusPassengerCapacity()
+        private int GetVehiclePassengerCapacity()
         {
             return GetIntegerInput("How many passengers can the bus take: ");
+        }
+
+        private string GetVehicleBrand()
+        {
+            return GetInput("Brand: ");
         }
 
         private string GetRandomVehicleType()
@@ -116,12 +121,6 @@ namespace ParkingSimulation2023
         {
             return char.ToUpper(input[0]) + input.Substring(1).ToLower();
         }
-
-        private string GetMotorcycleBrand()
-        {
-            return GetInput("Brand: ");
-        }
-
         private void TryAgain()
         {
             Console.WriteLine("Try again.");

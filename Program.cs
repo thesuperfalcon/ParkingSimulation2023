@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            int amountOfParkingSlots = 4;
+            int amountOfParkingSlots = 15;
             VehicleGenerator vehicleGenerator = new VehicleGenerator();
             Parking parking = new Parking(amountOfParkingSlots);
             int vehicleCounter = 0;
@@ -14,7 +14,7 @@
                 Console.Clear();
                 parking.DrawParking();
 
-                if (vehicleCounter % 10 == 0 && vehicleCounter > 0)
+                if (vehicleCounter % 3 == 0 && vehicleCounter > 0)
                 {
                     Console.WriteLine($"Do you want to check out a vehicle (C) or continue parking (P)?");
                     char response = char.ToUpper(Console.ReadKey().KeyChar);

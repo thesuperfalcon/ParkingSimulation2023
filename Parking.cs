@@ -177,7 +177,6 @@ namespace ParkingSimulation2023
             }
         }
 
-
         private bool HasAvailableSpaceForVehicle(Vehicle vehicle)
         {
             foreach (KeyValuePair<string, List<Vehicle>> slot in Slots)
@@ -233,16 +232,9 @@ namespace ParkingSimulation2023
                 return false;
             }
 
-            if (currentSlotNumber >= SlotsAmount - 1)
-            {
-                return false;
-            }
-
             string nextSlot = $"Slot {currentSlotNumber + 1}";
-            string nextNextSlot = $"Slot {currentSlotNumber + 2}";
 
-            if (!Slots.ContainsKey(nextSlot) || !Slots.ContainsKey(nextNextSlot) ||
-                !CanParkInSlot(vehicle, Slots[nextSlot]) || !CanParkInSlot(vehicle, Slots[nextNextSlot]))
+            if (!Slots.ContainsKey(nextSlot) || !CanParkInSlot(vehicle, Slots[nextSlot]))
             {
                 return false;
             }
